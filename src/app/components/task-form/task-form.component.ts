@@ -64,7 +64,7 @@ export class TaskFormComponent implements OnInit {
   onSubmit() {
     if (this.taskForm.valid) {
       const taskData = this.taskForm.value;
-
+  
       if (this.isUpdate) {
         // Update existing task
         this.taskService.updateTask({ id: this.taskId, ...taskData }).subscribe(
@@ -78,8 +78,10 @@ export class TaskFormComponent implements OnInit {
           }
         );
       } else {
+        const newTaskData = { id: '', ...taskData };
+  
         // Create new task
-        this.taskService.createTask(taskData).subscribe(
+        this.taskService.createTask(newTaskData).subscribe(
           () => {
             this.toastr.success('Task created successfully', 'Success');
             console.log('Task created successfully');
@@ -92,7 +94,7 @@ export class TaskFormComponent implements OnInit {
       }
     } else {
       console.error('Task form has invalid inputs');
-      
     }
   }
+  
 }

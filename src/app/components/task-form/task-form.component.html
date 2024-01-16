@@ -1,25 +1,25 @@
 <div class="container mt-5">
-    <h2>{{ isUpdate ? 'Update Task' : 'Create Task' }}</h2>
+  <h2>{{ isUpdate ? 'Update Task' : 'Create Task' }}</h2>
   
-    <form (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
-      <div class="mb-3">
-        <label for="title" class="form-label">Title:</label>
-        <input type="text" id="title" [(ngModel)]="task.title" name="title" class="form-control" required>
-        <div class="invalid-feedback">Please enter a title.</div>
-      </div>
-  
-      <div class="mb-3">
-        <label for="description" class="form-label">Description:</label>
-        <textarea id="description" [(ngModel)]="task.description" name="description" class="form-control" required></textarea>
-        <div class="invalid-feedback">Please enter a description.</div>
-      </div>
-  
-      <div class="mb-3">
-        <label for="dueDate" class="form-label">Due Date:</label>
-        <input type="date" id="dueDate" [(ngModel)]="task.dueDate" name="dueDate" class="form-control" required>
-        <div class="invalid-feedback">Please enter a due date.</div>
-      </div>
-  
-      <button type="submit" class="btn btn-primary">{{ isUpdate ? 'Update Task' : 'Create Task' }}</button>
-    </form>
-  </div>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="title" class="form-label">Title:</label>
+      <input formControlName="title" type="text" id="title" class="form-control" required>
+      <div class="invalid-feedback" *ngIf="taskForm.get('title')!.invalid && taskForm.get('title')!.touched">Please enter a title.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea formControlName="description" id="description" class="form-control" required></textarea>
+      <div class="invalid-feedback" *ngIf="taskForm.get('description')!.invalid && taskForm.get('description')!.touched">Please enter a description.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Due Date:</label>
+      <input formControlName="dueDate" type="date" id="dueDate" class="form-control" required>
+      <div class="invalid-feedback" *ngIf="taskForm.get('dueDate')!.invalid && taskForm.get('dueDate')!.touched">Please enter a due date.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ isUpdate ? 'Update Task' : 'Create Task' }}</button>
+  </form>
+</div>

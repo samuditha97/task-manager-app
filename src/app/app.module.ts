@@ -10,12 +10,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { TaskDetailComponent } from './components/task-list/task-description/task-detail/task-detail.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskFormComponent,
-    TaskListComponent
+    TaskListComponent,
+    TaskDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
