@@ -42,11 +42,8 @@
     background-color: #0056b3;
   }
   
-  .invalid-feedback {
+  .error-message {
     color: red;
     margin-top: 5px;
   }
-
-  .input-error {
-    border: 1px solid red;
-  }
+  
