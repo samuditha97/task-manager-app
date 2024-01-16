@@ -12,13 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TaskDetailComponent } from './components/task-list/task-description/task-detail/task-detail.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskFormComponent,
     TaskListComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

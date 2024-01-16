@@ -1,5 +1,3 @@
-/* task-form.component.css */
-
 .container {
     max-width: 600px;
     margin: auto;
@@ -48,4 +46,7 @@
     color: red;
     margin-top: 5px;
   }
-  
+
+  .input-error {
+    border: 1px solid red;
+  }

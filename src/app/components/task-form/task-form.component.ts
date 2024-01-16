@@ -32,8 +32,8 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
+      title: ['', [Validators.required, Validators.maxLength(30)]],
+      description: ['', [Validators.required, Validators.maxLength(200)]],
       dueDate: ['', Validators.required]
     });
 
@@ -47,24 +47,30 @@ export class TaskFormComponent implements OnInit {
   }
 
   loadTaskDetails() {
-    this.taskService.getTask(this.taskId).subscribe(
-      (task: Task) => {
-        this.taskForm.setValue({
-          title: task.title,
-          description: task.description,
-          dueDate: task.dueDate
-        });
-      },
-      error => {
-        console.error('Error loading task details:', error);
-      }
-    );
+    if (this.isUpdate) {
+      this.taskService.getTask(this.taskId).subscribe(
+        (task: Task) => {
+          const dueDate = new Date(task.dueDate);
+          const localDueDate = dueDate.toISOString().split('T')[0];
+
+          this.taskForm.setValue({
+            title: task.title,
+            description: task.description,
+            dueDate: localDueDate
+          });
+        },
+        error => {
+          console.error('Error loading task details:', error);
+        }
+      );
+    }
   }
+
 
   onSubmit() {
     if (this.taskForm.valid) {
       const taskData = this.taskForm.value;
-  
+      console.log('Form status:', this.taskForm.status);
       if (this.isUpdate) {
         // Update existing task
         this.taskService.updateTask({ id: this.taskId, ...taskData }).subscribe(

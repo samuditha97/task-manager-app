@@ -37,18 +37,18 @@ export class TaskListComponent implements OnInit{
     }
 
     updateTask(taskId: string) {
-      
+      this.router.navigate(['/tasks/update', taskId]);
     }
   
     deleteTask(taskId: string) {
       const toastrRef = this.toastr.warning(
-        'Are you sure you want to delete this task?',
+        'Are you sure you want to delete this task? Click On for yes',
         'Confirmation',
         {
           timeOut: 0,
           extendedTimeOut: 0,
           closeButton: true,
-          positionClass: 'toast-top-center',
+          positionClass: 'toast-top-center'
         }
       );
   
